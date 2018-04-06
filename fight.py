@@ -18,6 +18,10 @@ def find_strongest_and_closest_enemy():
 		if hero.distanceTo(current_enemy) > 10:
 			continue
 	
+		# ignore weak enemies
+		if current_enemy.maxHealth < 50:
+			continue
+			
 		if strongest_weighted_enemy == None:
 			strongest_weighted_enemy = current_enemy
 			continue
