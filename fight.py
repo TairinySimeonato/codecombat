@@ -7,6 +7,9 @@ def find_strongest_enemy():
 	return strongest_enemy
 	
 ####################################################
+def enemy_weight(enemy):
+	return enemy.maxHealth/hero.distanceTo(enemy)
+
 def find_strongest_and_closest_enemy():
 	strongest_weighted_enemy = None
 
@@ -15,12 +18,7 @@ def find_strongest_and_closest_enemy():
 			strongest_weighted_enemy = current_enemy
 			continue
 		
-		if hero.distanceTo(current_enemy) > 50:
-			continue
-    
-		strongest_enemy_weight = strongest_weighted_enemy.maxHealth/hero.distanceTo(strongest_weighted_enemy)
-		current_enemy_weight = current_enemy.maxHealth/hero.distanceTo(current_enemy)
-		if current_enemy_weight > strongest_enemy_weight:
-			strongest_weighted_enemy = current_enemy      
+		if enemy_weight(current_enemy) > enemy_weight(strongest_weighted_enemy):
+			strongest_weighted_enemy = current_enemy
 			
 	return strongest_weighted_enemy
